@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أثَر | ATHAR</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #101525;
+  --surface: #191f32;
+  --green: #d6ff65;
+  --purple: #a78bfa;
+  --white: #f7f8fc;
+  --muted: #a4adc1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  width: min(1150px, 90%);
+  margin: auto;
+}
+
+/* NAVBAR */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(16,21,37,.9);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #ffffff12;
+}
+
+nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: var(--green);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  color: white;
+  margin-right: 7px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  transition: .3s;
+}
+
+.nav-links a:hover { color: var(--green); }
+
+.nav-btn {
+  background: var(--green);
+  color: #101525;
+  border: 0;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: 800;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 25px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: var(--purple);
+  filter: blur(170px);
+  opacity: .16;
+  top: 10%;
+  left: -10%;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+
+.tag {
+  display: inline-block;
+  color: var(--green);
+  border: 1px solid #d6ff6540;
+  background: #d6ff6510;
+  border-radius: 30px;
+  padding: 7px 17px;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(45px, 6vw, 78px);
+  line-height: 1.25;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.hero h1 span { color: var(--green); }
+
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 2;
+  max-width: 550px;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.primary-btn, .secondary-btn {
+  padding: 13px 25px;
+  border-radius: 12px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.primary-btn {
+  background: var(--green);
+  color: var(--bg);
+  border: 1px solid var(--green);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid #ffffff35;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+  transform: translateY(-4px);
+}
+
+/* PLANET */
+
+.planet-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.planet {
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, #d6ff65, transparent 25%),
+    radial-gradient(circle at 65% 65%, #a78bfa, transparent 40%),
+    linear-gradient(135deg, #367c69, #162c50 70%);
+  box-shadow: 0 0 70px #a78bfa35,
+              inset -30px -25px 55px #080d1a;
+  position: relative;
+  animation: float 5s ease-in-out infinite;
+}
+
+.planet::after {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  border: 1px solid #d6ff6570;
+  border-radius: 50%;
+  transform: rotate(-25deg) scaleY(.35);
+}
+
+.orbit {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border: 1px dashed #a78bfa60;
+  border-radius: 50%;
+  animation: spin 22s linear infinite;
+}
+
+.orbit-dot {
+  position: absolute;
+  top: 35px;
+  right: 65px;
+  width: 14px;
+  height: 14px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--green);
+}
+
+@keyframes float {
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* SECTIONS */
+
+section { padding: 90px 0; }
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading small {
+  color: var(--green);
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-size: clamp(30px, 4vw, 43px);
+  margin: 12px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  max-width: 650px;
+  margin: auto;
+  line-height: 2;
+}
+
+/* CARDS */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid #ffffff12;
+  border-radius: 20px;
+  padding: 27px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+}
+
+.card-icon {
+  font-size: 35px;
+  margin-bottom: 17px;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* TECHNOLOGY */
+
+.tech-section { background: #151b2c; }
+
+.tech-card {
+  background: #20273b;
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid #ffffff10;
+}
+
+.tech-card .number {
+  color: var(--green);
+  font-family: 'Space Grotesk';
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* INTERACTIVE QUIZ */
+
+.quiz-box {
+  max-width: 750px;
+  margin: auto;
+  background: var(--surface);
+  border: 1px solid #ffffff18;
+  border-radius: 25px;
+  padding: 35px;
+}
+
+.quiz-box h3 {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 15px;
+  margin: 12px 0;
+  background: #252d43;
+  color: white;
+  border: 1px solid #ffffff15;
+  border-radius: 12px;
+  transition: .2s;
+}
+
+.quiz-option:hover {
+  border-color: var(--green);
+}
+
+.quiz-option:disabled { cursor: default; opacity: .85; }
+
+#feedback {
+  color: var(--green);
+  font-weight: bold;
+  margin-top: 20px;
+  min-height: 30px;
+}
+
+/* CTA */
+
+.cta {
+  background: linear-gradient(120deg, #d6ff65, #b3ed9c);
+  color: #101525;
+  border-radius: 25px;
+  padding: 50px 30px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.cta p { margin-bottom: 25px; }
+
+.cta a {
+  display: inline-block;
+  background: #101525;
+  color: white;
+  padding: 13px 25px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer strong { color: var(--green); }
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 78px;
+    right: 0;
+    width: 100%;
+    background: #191f32;
+    padding: 25px;
+    flex-direction: column;
+  }
+
+  .nav-links.active { display: flex; }
+  .menu-btn { display: block; }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero p { margin-inline: auto; }
+  .buttons { justify-content: center; }
+  .planet-area { min-height: 350px; }
+  .planet { width: 240px; height: 240px; }
+  .orbit { width: 300px; height: 300px; }
+  .cards { grid-template-columns: 1fr; }
+  .hero { padding: 65px 0; }
+  .section-heading h2 { font-size: 30px; }
+}
+
+@media(min-width: 801px) and (max-width: 1050px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">أثَر <span>ATHAR.</span></a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">الرئيسية</a>
+        <a href="#about">عن التغير المناخي</a>
+        <a href="#technology">التكنولوجيا</a>
+        <a href="#solutions">الحلول</a>
+        <a href="#quiz">اختبر نفسك</a>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <a href="#about" class="nav-btn">اكتشف أثَر</a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="container hero-content">
+
+    <div>
+      <span class="tag">🌍 مستقبلك يبدأ بوعيك</span>
+
+      <h1>
+        كل حاجة<br>
+        بتسيب <span>أثَر.</span>
+      </h1>
+
+      <p>
+        عمرك فكرت إن استخدامك للتكنولوجيا ممكن يأثر
+        على كوكبنا؟
+        اكتشف عالم التغيرات المناخية، وافهم إزاي
+        التكنولوجيا ممكن تكون جزء من المشكلة... أو الحل.
+      </p>
+
+      <div class="buttons">
+        <a href="#about" class="primary-btn">يلا نكتشف ↙</a>
+        <a href="#technology" class="secondary-btn">اعرف أكتر</a>
+      </div>
+    </div>
+
+    <div class="planet-area">
+      <div class="orbit">
+        <div class="orbit-dot"></div>
+      </div>
+      <div class="planet"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="container">
+
+    <div class="section-heading">
+      <small>01 — UNDERSTAND</small>
+      <h2>إيه اللي بيحصل لكوكبنا؟ 🌡️</h2>
+      <p>
+        التغيرات المناخية مش مجرد ارتفاع في درجات الحرارة.
+        دي تغييرات بتأثر على حياتنا ومستقبلنا ومستقبل الأجيال الجاية.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <h3>ارتفاع الحرارة</h3>
+        <p>
+          زيادة درجات الحرارة بتسبب موجات حر شديدة
+          وبتأثر على الإنسان والزراعة والحياة البرية.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <h3>ارتفاع مستوى البحار</h3>
+        <p>
+          ذوبان الجليد وارتفاع حرارة المحيطات
+          بيهددوا المناطق الساحلية.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌪️</div>
+        <h3>ظواهر جوية متطرفة</h3>
+        <p>
+          تغير المناخ بيزود مخاطر بعض الظواهر
+          الجوية الشديدة زي الفيضانات والجفاف.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+
+<section class="tech-section" id="technology">
+  <div class="container">
+
+    <div class="section-heading">
+      <small>02 — TECHNOLOGY IMPACT</small>
+      <h2>التكنولوجيا.. عدو ولا صديق؟ 🤖</h2>
+      <p>
+        التكنولوجيا ليها تأثير مزدوج على البيئة.
+        ممكن تزود استهلاك الطاقة والانبعاثات،
+        وممكن تساعدنا نلاقي حلول ذكية.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="tech-card">
+        <div class="number">01</div>
+        <h3>مراكز البيانات</h3>
+        <p>بتستهلك الكهرباء والطاقة لتشغيل وتبريد الخوادم.</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="number">02</div>
+        <h3>الذكاء الاصطناعي</h3>
+        <p>ممكن يساعد في تحليل بيانات المناخ، لكنه يحتاج موارد حاسوبية وطاقة.</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="number">03</div>
+        <h3>الأجهزة الإلكترونية</h3>
+        <p>تصنيعها والتخلص منها بشكل غير سليم ممكن يسبب تلوثًا ونفايات إلكترونية.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+
+<section id="solutions">
+  <div class="container">
+
+    <div class="section-heading">
+      <small>03 — THE SOLUTION</small>
+      <h2>طب نقدر نعمل إيه؟ 💚</h2>
+      <p>
+        التكنولوجيا مش لازم تكون جزء من المشكلة.
+        دي بعض الطرق اللي ممكن تساعدنا نحمي بيئتنا.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">☀️</div>
+        <h3>الطاقة الشمسية</h3>
+        <p>استخدام طاقة الشمس في إنتاج الكهرباء وتقليل الاعتماد على الوقود الأحفوري.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛰️</div>
+        <h3>الأقمار الصناعية</h3>
+        <p>مراقبة التغيرات في الغابات والبحار والطقس من الفضاء.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>الذكاء الاصطناعي</h3>
+        <p>تحليل البيانات والتنبؤ بالمخاطر وتحسين كفاءة استخدام الطاقة.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+
+<section class="tech-section" id="quiz">
+  <div class="container">
+
+    <div class="section-heading">
+      <small>04 — TEST YOURSELF</small>
+      <h2>قد إيه أنت واعي بيئيًا؟ 🧩</h2>
+      <p>اختبر معلوماتك في سؤال سريع!</p>
+    </div>
+
+    <div class="quiz-box">
+      <h3>إيه من دول ممكن يساعد في مراقبة إزالة الغابات؟</h3>
+
+      <button class="quiz-option" data-answer="wrong">
+        📱 تطبيقات الموسيقى
+      </button>
+
+      <button class="quiz-option" data-answer="correct">
+        🛰️ الأقمار الصناعية والاستشعار عن بُعد
+      </button>
+
+      <button class="quiz-option" data-answer="wrong">
+        🎮 ألعاب الفيديو
+      </button>
+
+      <div id="feedback"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>أنت جزء من التغيير. 🌱</h2>
+      <p>
+        اختياراتك النهارده ممكن تسيب أثر في مستقبل كوكبنا.
+      </p>
+      <a href="#home">ابدأ رحلتك مع أثَر ↑</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>أثَر | ATHAR.</strong>
+    <p>كل حاجة بتسيب أثر.. اختار أثرك بعناية.</p>
+    <p>© 2026 ATHAR — Climate Awareness Project</p>
+  </div>
+</footer>
+
+<script>
+// MOBILE MENU
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+// CLOSE MENU AFTER CLICK
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
+});
+
+// INTERACTIVE QUIZ
+
+const options = document.querySelectorAll(".quiz-option");
+const feedback = document.getElementById("feedback");
+
+options.forEach(option => {
+  option.addEventListener("click", () => {
+
+    options.forEach(btn => btn.disabled = true);
+
+    if (option.dataset.answer === "correct") {
+      feedback.textContent = "🔥 إجابة صحيحة! الأقمار الصناعية بتساعد في مراقبة الغابات.";
+      option.style.borderColor = "#d6ff65";
+    } else {
+      feedback.textContent = "💡 مش بالضبط! جرّب تعرف أكتر عن الاستشعار عن بُعد.";
+      option.style.borderColor = "#ff8c8c";
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
